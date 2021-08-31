@@ -1,0 +1,110 @@
+* /*appplica le regole a tutti gli elementi*/
+ {
+  box-sizing: border-box;/*imposta il modo in cui vengono calcolate la larghezza e l'altezza totali di un elemento
+  con border-box lospessore dei bordi e la grandezza dei padding vengono compresi nella dimensione totale impostata*/
+  
+  margin: 0;/*per convenzione si azzerano i margini e i padding di tutti gli elementi*/
+  padding: 0;
+
+}
+/**/
+body {
+  font-family: sans-serif;/*definisce il carattere di scrittura*/
+  color: #000;/*definisce il colore del carattere di scrittura*/
+  font-size: 20px;/*definisce la dimensione del carattere di scrittura*/
+  /**/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+}
+/* COONTENITORE BARRE ORIZZONTALI */
+.container {
+  position: relative; /*consente il posizionamento interno delle barre*/
+  /*definisce la distribuzione e la posizione degli elementi HTML interni*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100px;/*larghezza dell'elemento*/
+  height: 50px;/*altezza del'elemento*/
+}
+.container ::before,
+.container::after {
+  content: ""; /*crea un elemento vuoto prima e dopo il container */
+  width: 100%; /*dimensiona la larghezza dell'elemento*/
+  height: 2px; /*dimensiona l'altezza dell'elemento*/
+  background-color: #000; /*definisce il colore di sfondo dell'elemento*/
+}
+.container ::before {
+  /* posizionamento dell'elemento before */
+  position: absolute;
+  top: 0; /*posiziona l'elemento in alto*/
+  left: 0;/*posiziona l'elemento a sinistra*/
+  transform: scaleX(0); /* dimensionamento a 0 dell'elemento before */
+  transform-origin: left; /*sposta l'origine dell'elemento a sinistra 
+  il movimento partirà da sinistra verso destra*/
+}
+.container::after {/*stessa cosa per l'elemento after*/
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+}
+.container:hover ::before {/*definisce le azioni al passaggio del mouse*/
+  transform: scaleX(1);/*l'elemento si ingrandirà fino alla massima dimensione impostata*/
+  transition: transform 0.5s linear;/*definisce il tipo e il tempo per effettuare la trasformazione*/
+}
+.container:hover::after {/*stessa cosa per l'elemento after*/
+  transform: scaleX(1);
+  transition: transform 0.5s linear;
+}
+/* FINE CONTENITORE BARRE ORIZZONTALI */
+
+/* Contenitore interno per le barre verticali */
+.sub_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 50px;
+}
+.sub_container::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background-color: red;
+  transform: scaleY(0);
+  transform-origin: top;
+}
+.sub_container::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background-color: red;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+.sub_container:hover::before {
+  transform: scaleY(1);
+  transition: transform 0.5s linear;
+}
+.sub_container:hover::after {
+  transform: scaleY(1);
+  transition: transform 0.5s linear;
+}
+/* FINE Contenitore interno per le barre verticali */
+
+a {
+  color: inherit;/*erdita il colore del testo dall'elemento superiore*/
+  text-decoration: none;/*elimina la sottolineatura del link */
+  text-transform: uppercase;/*trasforma il testo in lettere maiuscole*/
+  font-weight: bold;/*trasforma il testo in grassetto*/
+}
